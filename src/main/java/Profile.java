@@ -17,8 +17,11 @@ public class Profile {
         this.email = email;
         this.phoneNumber = pnum;
         this.password = pswd;
+        this.matches = new ArrayList<Match>();
+        this.quizAnswers = "";
         this.favorites = new ArrayList<Profile>();
-        this.favorites = new ArrayList<Profile>();
+        this.blockedUsers = new ArrayList<Profile>();
+        this.housePosts = new ArrayList<House>();
     }
 
 
