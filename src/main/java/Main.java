@@ -7,10 +7,12 @@ public class Main {
         boolean exitFlag = false; //once true, finish the program
         String userInput = "";
         Scanner keyboard = new Scanner(System.in);
+        //Declare profile?
         while(!exitFlag)
         {
+            //print prompt from controller
             //take user input from scanner
-            keyboard.nextLine().trim();
+            userInput = keyboard.nextLine().trim();
             //convert to lowercase
             userInput = userInput.toLowerCase();
             if(userInput.equals("exit"))
@@ -19,6 +21,6 @@ public class Main {
             }
             //potentially flush the scanner?
         }
-
+        System.out.println("Thank you for using the Roommate Finder!");
     }
 }
