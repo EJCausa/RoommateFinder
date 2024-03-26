@@ -25,12 +25,11 @@ public class Profile {
     }
 
 
-    public String takeQuiz() {
-        String qAnswer = "";
+    public void takeQuiz() {
 
         ///quiz code & print statements
 
-        return qAnswer;
+        
     }
 
 
