@@ -1,6 +1,8 @@
 public class Controller {
 
     String currentPage;
+
+    String[] currentChoices = new String[10];
     String startupPage = """
             ____________________________________________________________________________
                _____                             _         __  __       _       _    \s
@@ -28,5 +30,7 @@ public class Controller {
 
     public Controller() {
         currentPage = startupPage;
+        
+
     }
 }
