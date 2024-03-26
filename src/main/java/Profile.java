@@ -9,7 +9,7 @@ public class Profile {
     String quizAnswers;
     ArrayList<Profile> favorites;
     ArrayList<Profile> blockedUsers;
-    ArrayList<House> housePosts;
+    ArrayList<HousePost> housePosts;
 
 
     public Profile (String uname, String email, String pnum, String pswd) {
@@ -21,7 +21,7 @@ public class Profile {
         this.quizAnswers = "";
         this.favorites = new ArrayList<Profile>();
         this.blockedUsers = new ArrayList<Profile>();
-        this.housePosts = new ArrayList<House>();
+        this.housePosts = new ArrayList<HousePost>();
     }
 
 
@@ -113,7 +113,7 @@ public class Profile {
         return blockedUsers;
     }
 
-    public ArrayList<House> getHousePosts() {
+    public ArrayList<HousePost> getHousePosts() {
         return housePosts;
     }
 
