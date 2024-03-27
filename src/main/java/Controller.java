@@ -23,14 +23,46 @@ public class Controller {
 
 
 
-                                 type \u001b[1m/quit\u001b[0m to quit at any time
+                                 type \u001b[1m/exit\u001b[0m to quit at any time
                             type \u001b[1m/back\u001b[0m to return to the previous page
+            ____________________________________________________________________________""";
+
+    String confirmExitPage = """
             ____________________________________________________________________________
-            Type\u001b[1m /create account\u001b[0m or\u001b[1m /log in\u001b[0m here:\s""";
+
+
+
+                            Are you sure you want to close the program?
+                                        Enter \u001b[1myes\u001b[0m or \u001b[1mno\u001b[0m
+                                     \033[3m(No backslash needed)\033[0m
+
+
+
+
+
+            ____________________________________________________________________________
+            """;
 
     public Controller() {
         currentPage = startupPage;
         
 
+    }
+
+    private  void clearTerminal() {
+        System.out.print("\033[H\033[2J");  
+        System.out.flush();
+    }
+
+    public void printStartupPage () {
+        clearTerminal();
+        System.out.println(this.startupPage);
+        System.out.print("Type\u001b[1m /create account\u001b[0m or\u001b[1m /log in\u001b[0m here: ");
+    }
+
+    public void printConfirmExitPage() {
+        clearTerminal();
+        System.out.println(this.confirmExitPage);
+        System.out.print("Please enter \u001b[1myes\u001b[0m or \u001b[1mno\u001b[0m: ");
     }
 }
