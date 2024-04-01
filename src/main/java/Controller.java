@@ -54,6 +54,12 @@ public class Controller {
         System.out.flush();
     }
 
+    public void printPage(String page, String prompt) {
+        clearTerminal();
+        System.out.println(page);
+        System.out.println(prompt);
+    }
+    /*
     public void printStartupPage () { //ERIK: would it be possible to have a single print current page method? Would the values of startup page and exit page need to be modified?
         clearTerminal();
         System.out.println(this.startupPage);
@@ -65,4 +71,5 @@ public class Controller {
         System.out.println(this.confirmExitPage);
         System.out.print("Please enter \u001b[1myes\u001b[0m or \u001b[1mno\u001b[0m: ");
     }
+    */
 }
