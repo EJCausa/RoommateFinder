@@ -3,13 +3,20 @@ public class App {
 
     public static void main(String[] args)
     {//TO-DO: Relocate page variables, print methods, and all IO from controller here
-        //Controller declared here
+        
+        //I think it is good to handle user input (keyboard Scanner) and UI display (Strings the ones found at the top of Controller) separately.
+        //Currently, the main is not a UI class. It only handles user input. To display the UI, it is calling methods from the Controller class.
+        //The only things in the Controller class right now are UI strings and methods to print them. Maybe we should rename Controller.java to UI.java?
+        //I think Main's only purpose should be to handle user input and call other classes.
+
+        //It makes more sense to handle user input and UI display in separate classes, rather than combining both into Main.java.
+        
         System.out.println("Roommate Finder initializing...");
         boolean exitFlag = false; //once true, finish the program
         String userInput = "";
         Scanner keyboard = new Scanner(System.in);
 
-
+        //Controller declared here
         Controller pageController = new Controller();
 
         while(!exitFlag)
