@@ -2,7 +2,7 @@ import java.util.Scanner;
 public class App {
 
     public static void main(String[] args)
-    {//TO-DO: Relocate page variables, print methods, and all IO here
+    {//TO-DO: Relocate page variables, print methods, and all IO from controller here
         //Controller declared here
         System.out.println("Roommate Finder initializing...");
         boolean exitFlag = false; //once true, finish the program
