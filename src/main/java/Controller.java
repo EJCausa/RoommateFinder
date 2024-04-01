@@ -54,7 +54,7 @@ public class Controller {
         System.out.flush();
     }
 
-    public void printStartupPage () {
+    public void printStartupPage () { //ERIK: would it be possible to have a single print current page method? Would the values of startup page and exit page need to be modified?
         clearTerminal();
         System.out.println(this.startupPage);
         System.out.print("Type\u001b[1m /create account\u001b[0m or\u001b[1m /log in\u001b[0m here: ");
