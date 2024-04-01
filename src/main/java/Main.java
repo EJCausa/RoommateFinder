@@ -14,7 +14,10 @@ public class App {
 
         while(!exitFlag)
         {
-            pageController.printStartupPage();
+            pageController.printPage(
+                pageController.getStartupPage(),
+                "Type\u001b[1m /create account\u001b[0m or\u001b[1m /log in\u001b[0m here: "
+            );
             //print prompt from controller
             //take user input from scanner
             userInput = keyboard.nextLine().trim();
@@ -24,7 +27,10 @@ public class App {
             {
 
                 while (!exitFlag) {
-                    pageController.printConfirmExitPage();
+                    pageController.printPage(
+                        pageController.getConfirmExitPage(),
+                        "Please enter \u001b[1myes\u001b[0m or \u001b[1mno\u001b[0m: "
+                    );
                     userInput = keyboard.nextLine().trim();
                     if (userInput.equals("no")) {
                         break;
