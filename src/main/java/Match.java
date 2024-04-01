@@ -1,4 +1,4 @@
-public class Match {
+public class Match { //ERIK: if we're using a database, we may need a readDBEntry method in this class?
     Profile candidate;
     double matchValue;
     boolean isFavorite;
