@@ -37,6 +37,10 @@ public class App {
                 }
                 
             }
+            //else
+            //{
+            //Need a function in controller to pass the user input to
+            //}
             //potentially flush the scanner?
             //I think we can flush the scanner in the controller methods
             
