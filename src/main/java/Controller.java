@@ -1,9 +1,10 @@
 public class Controller {
 
-    String currentPage;
+
+    private String currentPage;
 
     String[] currentChoices = new String[10];
-    String startupPage = """
+    private final String startupPage = """
             ____________________________________________________________________________
                _____                             _         __  __       _       _    \s
               |  __ \\                           | |       |  \\/  |     | |     | |   \s
@@ -27,7 +28,8 @@ public class Controller {
                             type \u001b[1m/back\u001b[0m to return to the previous page
             ____________________________________________________________________________""";
 
-    String confirmExitPage = """
+
+    private final String confirmExitPage = """
             ____________________________________________________________________________
 
 
@@ -43,14 +45,30 @@ public class Controller {
             ____________________________________________________________________________
             """;
 
+    public String getStartupPage() {
+        return startupPage;
+    }
+
+    public String getConfirmExitPage() {
+        return confirmExitPage;
+    }
+
+    public String getCurrentPage() {
+        return currentPage;
+    }
+
+    public void setCurrentPage(String currentPage) {
+        this.currentPage = currentPage;
+    }
+
     public Controller() {
         currentPage = startupPage;
-        
+
 
     }
 
-    private  void clearTerminal() {
-        System.out.print("\033[H\033[2J");  
+    private void clearTerminal() {
+        System.out.print("\033[H\033[2J");
         System.out.flush();
     }
 
