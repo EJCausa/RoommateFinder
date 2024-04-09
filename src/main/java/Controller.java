@@ -90,4 +90,12 @@ public class Controller {
         System.out.print("Please enter \u001b[1myes\u001b[0m or \u001b[1mno\u001b[0m: ");
     }
     */
+
+    public String getStartupPage() {
+        return this.startupPage;
+    }
+
+    public String getConfirmExitPage() {
+        return this.confirmExitPage;
+    }
 }
