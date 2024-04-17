@@ -1,4 +1,5 @@
 # RoommateFinder
+
 TO-DO DURING NEXT MEETING:
 
 -CREATE A SKELETAL DBOPS.JAVA FILE (CLASS DECLARATION AND COMMENTS LISTING FURTHER TO-DOS SHOULD BE ENOUGH)
@@ -9,7 +10,8 @@ TO-DO DURING NEXT MEETING:
 
 -CHECK IF ANY COMMENTS OUTSTANDING FROM LAST DELIVERABLE
 
-The only things in the Controller class right now are UI strings and methods to print them. Maybe we should rename Controller.java to UI.java?
+The only things in the StartController class right now are UI strings and methods to print them. Maybe we should rename
+StartController.java to UI.java?
 
 
 
