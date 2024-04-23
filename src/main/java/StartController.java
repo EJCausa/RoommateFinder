@@ -6,7 +6,7 @@ public class StartController implements PageController {
     private String currentPage;
     private boolean userExit = false;
 
-    String[] currentChoices = new String[10];
+
     private final String startupPage = """
             ____________________________________________________________________________
                _____                             _         __  __       _       _    \s
@@ -58,7 +58,8 @@ public class StartController implements PageController {
                     loginPage.loadPage(); //this doesnt do anything either, mainly bc we dont have a layout for these pages yes
                     break;
                 default:
-                    System.out.println("Invalid Command! Please enter one of the given options!");
+                    System.out.println("Invalid Command! Please enter one of the given options! Press Enter to continue");
+                    input = userIn.nextLine();
             }
         }
     }
