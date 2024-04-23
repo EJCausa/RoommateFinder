@@ -42,6 +42,8 @@ public class StartController implements PageController {
         Scanner userIn = new Scanner(System.in);
         String input;
         while (!userExit) {
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
             System.out.println(startupPage); //display page content, this is the part the user sees
 
             input = userIn.nextLine();

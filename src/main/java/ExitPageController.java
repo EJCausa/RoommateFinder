@@ -24,6 +24,8 @@ public class ExitPageController implements PageController {
         String input;
 
         while (!userExit) {
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
             System.out.println(confirmExitPage);
             input = userIn.nextLine();
             switch (input) {
