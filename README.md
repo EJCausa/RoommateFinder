@@ -1,16 +1,1 @@
 # RoommateFinder
-TO-DO DURING NEXT MEETING:
-
--CREATE A SKELETAL DBOPS.JAVA FILE (CLASS DECLARATION AND COMMENTS LISTING FURTHER TO-DOS SHOULD BE ENOUGH)
-
--CREATE ADDITIONAL SKELETAL HANDLERS AS NEEDED?
-
--REVIEW CLASS DIAGRAM
-
--CHECK IF ANY COMMENTS OUTSTANDING FROM LAST DELIVERABLE
-
-The only things in the Controller class right now are UI strings and methods to print them. Maybe we should rename Controller.java to UI.java?
-
-
-
-
