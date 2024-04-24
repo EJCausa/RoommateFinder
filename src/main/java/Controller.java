@@ -45,13 +45,6 @@ public class Controller {
             ____________________________________________________________________________
             """;
 
-    public String getStartupPage() {
-        return startupPage;
-    }
-
-    public String getConfirmExitPage() {
-        return confirmExitPage;
-    }
 
     public String getCurrentPage() {
         return currentPage;
