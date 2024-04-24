@@ -3,7 +3,6 @@ import java.util.Scanner;
 public class StartController implements PageController {
 
 
-    private String currentPage;
     private boolean userExit = false;
 
 
@@ -21,7 +20,7 @@ public class StartController implements PageController {
 
 
                             .-------------------.    .-----------.
-                            |  /create account  |    |  /log in  |
+                            |  /create account  |    |  /login  |
                             '-------------------'    '-----------'
 
 
@@ -54,10 +53,10 @@ public class StartController implements PageController {
                 case "/exit":
                     exitPage.loadPage();
                 case "/create account":
-                    accountCreationPage.loadPage(); //this doesnt do anything right now
+                    accountCreationPage.loadPage(); //this doesn't do anything right now
                     break;
-                case "/log in":
-                    loginPage.loadPage(); //this doesnt do anything either, mainly bc we dont have a layout for these pages yes
+                case "/login":
+                    loginPage.loadPage(); //this doesn't do anything either, mainly bc we don't have a layout for these pages yes
                     break;
                 default:
                     System.out.println("Invalid Command! Please enter one of the given options! Press Enter to continue");
