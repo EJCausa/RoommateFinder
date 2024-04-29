@@ -6,7 +6,7 @@ public class Profile {
     String phoneNumber;
     String password;
     ArrayList<Match> matches;
-    String quizAnswers;
+    int quizAnswers[];
     ArrayList<Profile> favorites;
     ArrayList<Profile> blockedUsers;
     ArrayList<HousePost> housePosts;
@@ -18,7 +18,7 @@ public class Profile {
         this.phoneNumber = pnum;
         this.password = pswd;
         this.matches = new ArrayList<Match>();
-        this.quizAnswers = "";
+        this.quizAnswers =new int[10];
         this.favorites = new ArrayList<Profile>();
         this.blockedUsers = new ArrayList<Profile>();
         this.housePosts = new ArrayList<HousePost>();
@@ -28,33 +28,6 @@ public class Profile {
     public void takeQuiz() {
 
         ///quiz code & print statements
-
-        
-    }
-
-
-    public void login() {
-
-    }
-
-    public void signUp() {
-
-    }
-
-    public void openConversation() {
-
-    }
-
-    public void sendNewMessage(String message) {
-
-    }
-
-    public void changeInfo() {
-
-    }
-
-    public void checkInbox() {
-
     }
 
     public void favoriteUser(Profile user) {
@@ -66,15 +39,15 @@ public class Profile {
     }
 
     public void unfavoriteUser(Profile user) {
-        
+        this.favorites.remove(user);
     }
 
     public void unblockUser(Profile user) {
-
+        this.blockedUsers.remove(user);
     }
 
     public void makeHousePost() {
-
+        HousePost.makeHousePost();
     }
 
 
@@ -101,7 +74,7 @@ public class Profile {
         return this.matches;
     }
 
-    public String getQuizAnswers() {
+    public int[] getQuizAnswers() {
         return quizAnswers;
     }
 
@@ -136,7 +109,7 @@ public class Profile {
         this.password = password;
     }
 
-    public void setQuizAnswers(String quizAnswers) {
+    public void setQuizAnswers(int[] quizAnswers) {
         this.quizAnswers = quizAnswers;
     }
 
