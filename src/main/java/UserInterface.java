@@ -126,10 +126,12 @@ public class UserInterface {
 
             } else {
                 //login failed
+                userExit = true;
             }
 
 
         }
+        userExit = false;
 
     }
 }
