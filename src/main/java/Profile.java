@@ -25,6 +25,19 @@ public class Profile {
         this.housePosts = new ArrayList<HousePost>();
     }
 
+    
+    public Profile(){
+        this.username = "";
+        this.email = "";
+        this.phoneNumber = "";
+        this.password = "";
+        this.matches =  new ArrayList<>();
+        this.quizAnswers = new int[10];
+        this.favorites = new ArrayList<Profile>();
+        this.blockedUsers = new ArrayList<Profile>();
+        this.housePosts = new ArrayList<>(HousePost);
+    }
+
 
     public void takeQuiz(boolean[] activeAnswers) {
         for (int i = 0; i < activeAnswers.length; i++) {
