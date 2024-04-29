@@ -33,9 +33,9 @@ public class Match {
         return this.matchValue;
     }
 
-    public boolean getisFavorite() {
-        return this.isFavorite;
-    }
+    public boolean getIsFavorite() {
+        return this.IsFavorite;
+    }//idk if we need this - Ariel
 
     //setters
 
@@ -47,7 +47,7 @@ public class Match {
         this.matchValue = matchValue;
     }
     
-    public void setFavorite(boolean isFavorite) {
-        this.isFavorite = isFavorite;
-    }
+    public void setFavorite(boolean IsFavorite) {
+        this.IsFavorite = IsFavorite;
+    }//idk if we need this - Ariel
 }
