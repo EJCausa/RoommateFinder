@@ -6,55 +6,31 @@ public class Profile {
     String phoneNumber;
     String password;
     ArrayList<Match> matches;
-    String quizAnswers;
+    boolean quizAnswers[];
+    static final int questionAmt = 10;
     ArrayList<Profile> favorites;
     ArrayList<Profile> blockedUsers;
     ArrayList<HousePost> housePosts;
 
 
-    public Profile (String uname, String email, String pnum, String pswd) {
+    public Profile(String uname, String email, String pnum, String pswd) {
         this.username = uname;
         this.email = email;
         this.phoneNumber = pnum;
         this.password = pswd;
         this.matches = new ArrayList<Match>();
-        this.quizAnswers = "";
+        this.quizAnswers = new boolean[questionAmt];
         this.favorites = new ArrayList<Profile>();
         this.blockedUsers = new ArrayList<Profile>();
         this.housePosts = new ArrayList<HousePost>();
     }
 
 
-    public void takeQuiz() {
-
+    public void takeQuiz(boolean[] activeAnswers) {
+        for (int i = 0; i < activeAnswers.length; i++) {
+            this.quizAnswers[i] = activeAnswers[i];
+        }
         ///quiz code & print statements
-
-        
-    }
-
-
-    public void login() {
-
-    }
-
-    public void signUp() {
-
-    }
-
-    public void openConversation() {
-
-    }
-
-    public void sendNewMessage(String message) {
-
-    }
-
-    public void changeInfo() {
-
-    }
-
-    public void checkInbox() {
-
     }
 
     public void favoriteUser(Profile user) {
@@ -66,17 +42,16 @@ public class Profile {
     }
 
     public void unfavoriteUser(Profile user) {
-        
+        this.favorites.remove(user);
     }
 
     public void unblockUser(Profile user) {
-
+        this.blockedUsers.remove(user);
     }
 
     public void makeHousePost() {
-
+//        HousePost.makeHousePost();
     }
-
 
 
     //getters
@@ -101,7 +76,7 @@ public class Profile {
         return this.matches;
     }
 
-    public String getQuizAnswers() {
+    public boolean[] getQuizAnswers() {
         return quizAnswers;
     }
 
@@ -131,12 +106,12 @@ public class Profile {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-    
+
     public void setPassword(String password) {
         this.password = password;
     }
 
-    public void setQuizAnswers(String quizAnswers) {
+    public void setQuizAnswers(boolean[] quizAnswers) {
         this.quizAnswers = quizAnswers;
     }
 
