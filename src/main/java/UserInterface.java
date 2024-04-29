@@ -102,6 +102,12 @@ public class UserInterface {
     }
 
     public void loadAcctCreation() {
+        Scanner userIn = new Scanner(System.in);
+        String username;
+        String pass;
+        String email;
+        String phone;
+
 
     }
 
@@ -113,9 +119,9 @@ public class UserInterface {
 
         while (!userExit) {
             System.out.println("Please enter login info:");
-            System.out.println("Username: ");
+            System.out.print("Username: ");
             username = userIn.nextLine();
-            System.out.println("Password: ");
+            System.out.print("Password: ");
             pass = userIn.nextLine();
 
             //database login validation here, set loginSuccess accordingly
