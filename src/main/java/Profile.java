@@ -78,7 +78,7 @@ public class Profile {
         return this.matches;
     }
 
-    public int[] getQuizAnswers() {
+    public boolean[] getQuizAnswers() {
         return quizAnswers;
     }
 
