@@ -13,13 +13,13 @@ public class Profile {
     ArrayList<HousePost> housePosts;
 
 
-    public Profile (String uname, String email, String pnum, String pswd) {
+    public Profile(String uname, String email, String pnum, String pswd) {
         this.username = uname;
         this.email = email;
         this.phoneNumber = pnum;
         this.password = pswd;
         this.matches = new ArrayList<Match>();
-        this.quizAnswers =new boolean[questionAmt];
+        this.quizAnswers = new boolean[questionAmt];
         this.favorites = new ArrayList<Profile>();
         this.blockedUsers = new ArrayList<Profile>();
         this.housePosts = new ArrayList<HousePost>();
@@ -27,8 +27,7 @@ public class Profile {
 
 
     public void takeQuiz(boolean[] activeAnswers) {
-        for(int i = 0; i < activeAnswers.length; i++)
-        {
+        for (int i = 0; i < activeAnswers.length; i++) {
             this.quizAnswers[i] = activeAnswers[i];
         }
         ///quiz code & print statements
@@ -51,9 +50,8 @@ public class Profile {
     }
 
     public void makeHousePost() {
-        HousePost.makeHousePost();
+//        HousePost.makeHousePost();
     }
-
 
 
     //getters
@@ -78,7 +76,7 @@ public class Profile {
         return this.matches;
     }
 
-    public int[] getQuizAnswers() {
+    public boolean[] getQuizAnswers() {
         return quizAnswers;
     }
 
@@ -108,12 +106,12 @@ public class Profile {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-    
+
     public void setPassword(String password) {
         this.password = password;
     }
 
-    public void setQuizAnswers(int[] quizAnswers) {
+    public void setQuizAnswers(boolean[] quizAnswers) {
         this.quizAnswers = quizAnswers;
     }
 
