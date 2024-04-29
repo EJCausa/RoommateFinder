@@ -10,8 +10,9 @@ TO-DO DURING NEXT MEETING:
 
 -CHECK IF ANY COMMENTS OUTSTANDING FROM LAST DELIVERABLE
 
-The only things in the StartController class right now are UI strings and methods to print them. Maybe we should rename
-StartController.java to UI.java?
+The only things in the UserInterface class right now are UserInterface strings and methods to print them. Maybe we
+should rename
+UserInterface.java to UserInterface.java?
 
 
 

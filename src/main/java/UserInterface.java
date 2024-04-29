@@ -1,11 +1,25 @@
 import java.util.Scanner;
 
-public class StartController implements PageController {
+public class UserInterface {
 
 
     private boolean userExit = false;
 
+    private final String confirmExitPage = """
+            ____________________________________________________________________________
 
+
+
+                            Are you sure you want to close the program?
+                                        Enter \u001b[1myes\u001b[0m or \u001b[1mno\u001b[0m
+                                     \033[3m(No backslash needed)\033[0m
+
+
+
+
+
+            ____________________________________________________________________________
+            """;
     private final String startupPage = """
             ____________________________________________________________________________
                _____                             _         __  __       _       _    \s
@@ -31,12 +45,8 @@ public class StartController implements PageController {
             ____________________________________________________________________________""";
 
 
-    @Override
     public void loadPage() {
 
-        PageController accountCreationPage = new CreateAccountController(); //prepare pages for available options
-        PageController loginPage = new LoginController();
-        PageController exitPage = new ExitPageController();
 
         Scanner userIn = new Scanner(System.in);
         String input;
@@ -51,12 +61,12 @@ public class StartController implements PageController {
                     userExit = true;
                     break;
                 case "/exit":
-                    exitPage.loadPage();
+                    loadExitPg();
                 case "/create account":
-                    accountCreationPage.loadPage(); //this doesn't do anything right now
+                    loadAcctCreation();
                     break;
                 case "/login":
-                    loginPage.loadPage(); //this doesn't do anything either, mainly bc we don't have a layout for these pages yes
+                    loadLogin();
                     break;
                 default:
                     System.out.println("Invalid Command! Please enter one of the given options! Press Enter to continue");
@@ -65,5 +75,61 @@ public class StartController implements PageController {
         }
     }
 
+    public void loadExitPg() {
+        Scanner userIn = new Scanner(System.in);
+        String input;
 
+        System.out.println(confirmExitPage);
+
+        while (!userExit) {
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
+            System.out.println(confirmExitPage);
+            input = userIn.nextLine();
+            switch (input) {
+                case "yes":
+                    System.out.println("Thank you for using the program!");
+                    System.exit(0);
+                case "no":
+                    userExit = true;
+                    break;
+                default:
+                    System.out.println("Invalid Command! Please use of the given options!");
+            }
+        }
+        userExit = false;
+
+    }
+
+    public void loadAcctCreation() {
+
+    }
+
+    public void loadLogin() {
+        Scanner userIn = new Scanner(System.in);
+        String username;
+        String pass;
+        boolean loginSuccess = false;
+
+        while (!userExit) {
+            System.out.println("Please enter login info:");
+            System.out.println("Username: ");
+            username = userIn.nextLine();
+            System.out.println("Password: ");
+            pass = userIn.nextLine();
+
+            //database login validation here, set loginSuccess accordingly
+
+
+            if (loginSuccess) {
+                //load main menu
+
+            } else {
+                //login failed
+            }
+
+
+        }
+
+    }
 }
