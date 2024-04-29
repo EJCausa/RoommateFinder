@@ -9,8 +9,18 @@ public class Match {
         this.isFavorite = isFavorite;
     }
 
-    public double computeMatchValue() {
-        return 0.0;
+    public double computeMatchValue(boolean[] homeUser, boolean[] guestUser)
+    {
+        int baseScore = 0;
+        for(int i = 0; i < homeUser.length; i++)
+        {
+            if(homeUser[i] == guestUser[i])
+            {
+                baseScore++;
+            }
+        }
+        double finalScore = (double) baseScore / homeUser.length;
+        return finalScore;
     }
 
     //getters
