@@ -113,7 +113,7 @@ public class Profile {
         this.password = password;
     }
 
-    public void setQuizAnswers(int[] quizAnswers) {
+    public void setQuizAnswers(boolean[] quizAnswers) {
         this.quizAnswers = quizAnswers;
     }
 
