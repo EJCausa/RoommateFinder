@@ -6,7 +6,8 @@ public class Profile {
     String phoneNumber;
     String password;
     ArrayList<Match> matches;
-    int quizAnswers[];
+    boolean quizAnswers[];
+    static final int questionAmt = 10;
     ArrayList<Profile> favorites;
     ArrayList<Profile> blockedUsers;
     ArrayList<HousePost> housePosts;
@@ -18,15 +19,18 @@ public class Profile {
         this.phoneNumber = pnum;
         this.password = pswd;
         this.matches = new ArrayList<Match>();
-        this.quizAnswers =new int[10];
+        this.quizAnswers =new boolean[questionAmt];
         this.favorites = new ArrayList<Profile>();
         this.blockedUsers = new ArrayList<Profile>();
         this.housePosts = new ArrayList<HousePost>();
     }
 
 
-    public void takeQuiz() {
-
+    public void takeQuiz(boolean[] activeAnswers) {
+        for(int i = 0; i < activeAnswers.length; i++)
+        {
+            this.quizAnswers[i] = activeAnswers[i];
+        }
         ///quiz code & print statements
     }
 
