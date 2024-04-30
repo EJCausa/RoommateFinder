@@ -9,8 +9,19 @@ public class Match {
         this.isFavorite = isFavorite;
     }
 
-    public double computeMatchValue() {
-        return 0.0;
+    public double computeMatchValue(boolean[] homeUser, boolean[] guestUser)
+    {
+        int baseScore = 0;
+        for(int i = 0; i < homeUser.length; i++)
+        {
+            if(homeUser[i] == guestUser[i])
+            {
+                baseScore++;
+            }
+        }
+        double finalScore = (double) baseScore / homeUser.length;
+        //consider adding assignment "matchValue = finalScore;
+        return finalScore;
     }
 
     //getters
@@ -23,9 +34,9 @@ public class Match {
         return this.matchValue;
     }
 
-    public boolean getisFavorite() {
-        return this.isFavorite;
-    }
+    public boolean getIsFavorite() {
+        return this.IsFavorite;
+    }//idk if we need this - Ariel
 
     //setters
 
@@ -37,7 +48,7 @@ public class Match {
         this.matchValue = matchValue;
     }
     
-    public void setFavorite(boolean isFavorite) {
-        this.isFavorite = isFavorite;
-    }
+    public void setFavorite(boolean IsFavorite) {
+        this.IsFavorite = IsFavorite;
+    }//idk if we need this - Ariel
 }
