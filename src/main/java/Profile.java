@@ -25,17 +25,17 @@ public class Profile {
         this.housePosts = new ArrayList<HousePost>();
     }
 
-    
-    public Profile(){
+
+    public Profile() {
         this.username = "";
         this.email = "";
         this.phoneNumber = "";
         this.password = "";
-        this.matches =  new ArrayList<>();
-        this.quizAnswers = new int[10];
+        this.matches = new ArrayList<>();
+        this.quizAnswers = new boolean[10];
         this.favorites = new ArrayList<Profile>();
         this.blockedUsers = new ArrayList<Profile>();
-        this.housePosts = new ArrayList<>(HousePost);
+        this.housePosts = new ArrayList<HousePost>();
     }
 
 

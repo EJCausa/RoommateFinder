@@ -104,10 +104,32 @@ public class UserInterface {
     public void loadAcctCreation() {
         Scanner userIn = new Scanner(System.in);
         String username;
-        String pass;
+        String pass = "";
         String email;
         String phone;
+        String input = "default";
 
+        System.out.println("Please Enter information");
+        System.out.print("Username:");
+        username = userIn.nextLine();
+        //make sure username is not taken
+
+        while (!input.equals(pass)) {
+            System.out.print("password: ");
+            pass = userIn.nextLine();
+            System.out.print("Please confirm password: ");
+            input = userIn.nextLine();
+            if (!input.equals(pass)) {
+                System.out.println("Password does not match!");
+            }
+        }
+
+        System.out.print("Email: ");
+        email = userIn.nextLine();
+        //validate email
+        System.out.print("Phone: ");
+        phone = userIn.nextLine();
+        //validate phone
 
     }
 
