@@ -20,6 +20,7 @@ public class Match {
             }
         }
         double finalScore = (double) baseScore / homeUser.length;
+        //consider adding assignment "matchValue = finalScore;
         return finalScore;
     }
 
