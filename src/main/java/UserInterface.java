@@ -162,4 +162,36 @@ public class UserInterface {
         userExit = false;
 
     }
+
+    public void loadQuiz() {
+        boolean[] quizAnswers = new boolean[10];
+        Scanner userIn = new Scanner(System.in);
+
+        System.out.println("True or False:");
+        System.out.println("I am generally a clean person.");
+        quizAnswers[0] = userIn.nextBoolean();
+        System.out.println("I like to go out often");
+        quizAnswers[1] = userIn.nextBoolean();
+        System.out.println("I enjoy having friends over");
+        quizAnswers[2] = userIn.nextBoolean();
+        System.out.println("I go to bed before 11pm most nights");
+        quizAnswers[3] = userIn.nextBoolean();
+        System.out.println("I drink often");
+        quizAnswers[4] = userIn.nextBoolean();
+        System.out.println("I consume weed often");
+        quizAnswers[5] = userIn.nextBoolean();
+        System.out.println("I will study in communal spaces often");
+        quizAnswers[6] = userIn.nextBoolean();
+        System.out.println("I smoke often");
+        quizAnswers[7] = userIn.nextBoolean();
+        System.out.println("I will bring pets to the living space");
+        quizAnswers[8] = userIn.nextBoolean();
+        System.out.println("I will have a job while in school");
+        quizAnswers[9] = userIn.nextBoolean();
+
+
+    }
 }
+
+
+
