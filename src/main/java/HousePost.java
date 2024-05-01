@@ -10,8 +10,9 @@ public class HousePost {
 
     }
 
-    public void display() {
-        System.out.println("House post for: " + this.address);
+    public String display() {
+        String returnString = "House post for: " + this.address + "\nUser: " + this.host.getUsername() + "\nDescription: " + this.description;
+        return returnString;
     }
 
     //getters
