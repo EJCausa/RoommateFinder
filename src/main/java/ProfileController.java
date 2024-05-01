@@ -1,9 +1,9 @@
 public class ProfileController {
     private static ProfileHandler ProfileHandlerOBJ = new ProfileHandler();
 
-    public static boolean signUp(String user,String email,String phone,String pass){
+    public static boolean signUp(String user,String email,String phone,String pass,boolean[] quizAns){
 
-        ProfileHandlerOBJ.signUp(user, email, phone, pass);
+        ProfileHandlerOBJ.signUp(user, email, phone, pass,quizAns);
         return true;
 
     }
@@ -12,5 +12,9 @@ public class ProfileController {
 //
 //
 //    }
+
+    public static void takeQuiz(Profile profile, boolean[] quiz){
+        ProfileHandlerOBJ.takeQuiz(profile,quiz);
+    }
 
 }
