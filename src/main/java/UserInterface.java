@@ -132,7 +132,7 @@ public class UserInterface {
         //validate phone
 
         boolean[] quizAnswer = loadQuiz();
-       ProfileController.signUp(username, email, phone, pass,quizAnswer);
+        ProfileController.signUp(username, email, phone, pass, quizAnswer);
     }
 
     public void loadLogin() {
@@ -191,7 +191,7 @@ public class UserInterface {
         System.out.println("I will have a job while in school");
         quizAnswers[9] = userIn.nextBoolean();
 
-    return quizAnswers;
+        return quizAnswers;
     }
 }
 

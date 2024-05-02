@@ -6,7 +6,7 @@ public class Profile {
     String phoneNumber;
     String password;
     ArrayList<Match> matches;
-    boolean quizAnswers[];
+    boolean[] quizAnswers;
     static final int questionAmt = 10;
     ArrayList<Profile> favorites;
     ArrayList<Profile> blockedUsers;
@@ -40,9 +40,7 @@ public class Profile {
 
 
     public void takeQuiz(boolean[] activeAnswers) {
-        for (int i = 0; i < activeAnswers.length; i++) {
-            this.quizAnswers[i] = activeAnswers[i];
-        }
+        this.quizAnswers = activeAnswers;
         ///quiz code & print statements
     }
 
