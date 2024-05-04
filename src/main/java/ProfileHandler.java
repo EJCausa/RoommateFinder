@@ -4,14 +4,17 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+
 public class ProfileHandler {
 
     String[] header = {"Name", "Email", "Phone", "Pass", "quizAns"};
-
+    //Profile profile1; //will be intialized when you Login
     public ProfileHandler() {
 
     }
+    public static Profile login(String user, String pass){
 
+    }
     public static boolean signUp(String user, String email, String phone, String pass, boolean[] quizAns) {
         Profile newAcc = new Profile(user, email, phone, pass);
         newAcc.takeQuiz(quizAns);
@@ -26,6 +29,11 @@ public class ProfileHandler {
             e.printStackTrace();
         }
         return true;
+
+    }
+
+    public static Profile getMatchList(Profile currProfile){
+        Profile profile1;
 
     }
 

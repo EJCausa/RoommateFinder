@@ -7,11 +7,14 @@ public class ProfileController {
         return true;
 
     }
-//    public static Profile login(String user, String email){
-//
-//
-//
-//    }
+    public static Profile login(String user, String pass){
+    Profile pfpOBJ=ProfileHandler.login(user,pass);
+    return pfpOBJ;
+
+    }
+    public static Profile getMatchList(Profile currProfile){
+        ProfileHandlerOBJ.getMatchList()
+    }
 
     public static void takeQuiz(Profile profile, boolean[] quiz){
         ProfileHandlerOBJ.takeQuiz(profile,quiz);
