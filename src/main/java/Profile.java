@@ -12,6 +12,8 @@ public class Profile {
     ArrayList<Profile> blockedUsers;
     ArrayList<HousePost> housePosts;
 
+    int lineNum;
+
 
     public Profile(String uname, String email, String pnum, String pswd) {
         this.username = uname;
@@ -23,6 +25,7 @@ public class Profile {
         this.favorites = new ArrayList<Profile>();
         this.blockedUsers = new ArrayList<Profile>();
         this.housePosts = new ArrayList<HousePost>();
+
     }
 
 
