@@ -74,7 +74,7 @@ public class ProfileHandler {
         try {
             FileReader fr = new FileReader(file);
             CSVReader reader = new CSVReader(fr);
-            for (int i = 0; i < 2; i++) {
+            for (int i = 0; i < 5; i++) {
                 if (i != currProfile.lineNum) {
 
                     if (reader.peek() != null) {
