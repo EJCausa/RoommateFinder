@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 public class ProfileHandler {
@@ -40,11 +41,19 @@ public class ProfileHandler {
         Profile newAcc = new Profile(user, email, phone, pass);
         newAcc.takeQuiz(quizAns);
         File accountFile = new File("accounts.csv");
-        String[] line = {user, email, phone, pass};
+        ArrayList<String> line = new ArrayList<String>();
+        line.add(user);
+        line.add(email);
+        line.add(phone);
+        line.add(pass);
+        for (int i = 0; i < 10; i++) {
+            line.add(String.valueOf(quizAns[i]));
+        }
+        String[] fullLine = line.toArray(new String[line.size()]);
         try {
             FileWriter outFile = new FileWriter(accountFile, true);
             CSVWriter writer = new CSVWriter(outFile);
-            writer.writeNext(line);
+            writer.writeNext(fullLine);
             writer.close();
         } catch (IOException e) {
             e.printStackTrace();

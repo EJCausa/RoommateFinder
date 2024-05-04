@@ -149,6 +149,7 @@ public class UserInterface {
             System.out.println("login failed!");
         } else {
             //load main menu
+            System.out.println("Success");
         }
     }
 
