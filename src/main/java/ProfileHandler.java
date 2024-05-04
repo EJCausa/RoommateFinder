@@ -1,6 +1,8 @@
+import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -8,13 +10,32 @@ import java.io.IOException;
 public class ProfileHandler {
 
     String[] header = {"Name", "Email", "Phone", "Pass", "quizAns"};
+
     //Profile profile1; //will be intialized when you Login
     public ProfileHandler() {
 
     }
-    public static Profile login(String user, String pass){
 
+    public static Profile login(String user, String pass) {
+        File file = new File("accounts.csv");
+        try {
+            FileReader fr = new FileReader(file);
+            CSVReader reader = new CSVReader(fr);
+            while (reader.peek() != null) {
+                String[] line = reader.readNext();
+                if (line[0].equals(user)) {
+                    if (line[3].equals(pass)) {
+                        Profile prof = new Profile(user, line[1], line[2], line[3]);
+                        return prof;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
+
     public static boolean signUp(String user, String email, String phone, String pass, boolean[] quizAns) {
         Profile newAcc = new Profile(user, email, phone, pass);
         newAcc.takeQuiz(quizAns);
@@ -32,9 +53,9 @@ public class ProfileHandler {
 
     }
 
-    public static Profile getMatchList(Profile currProfile){
+    public static Profile getMatchList(Profile currProfile) {
         Profile profile1;
-
+        return null;
     }
 
     public static void takeQuiz(Profile profile, boolean[] quiz) {

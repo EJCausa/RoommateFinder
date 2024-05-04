@@ -1,15 +1,10 @@
-import com.opencsv.CSVReader;
-import com.opencsv.exceptions.CsvValidationException;
-
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.Scanner;
 
 public class UserInterface {
 
 
     private boolean userExit = false;
+    private Profile currentProfile;
 
     private final String confirmExitPage = """
             ____________________________________________________________________________
@@ -142,60 +137,19 @@ public class UserInterface {
     }
 
     public void loadLogin() {
-        Scanner userIn = new Scanner(System.in);
-        String username;
+        String user;
         String pass;
-        boolean loginSuccess = false;
-
-        while (!userExit) {
-            System.out.println("Please enter login info:");
-            System.out.print("Username: ");
-            username = userIn.nextLine();
-            System.out.print("Password: ");
-            pass = userIn.nextLine();
-
-
-            //database login validation here, set loginSuccess accordingly
-            File file = new File("../accounts.csv");
-
-
-            try {
-                FileReader fileReader = new FileReader(file);
-                CSVReader reader = new CSVReader(fileReader);
-                reader.skip(1);
-                String[] line = reader.readNext();
-                while (reader.peek() != null) {
-                    if (line[0].equals(username)) {
-                        if (line[3].equals(pass)) {
-                            loginSuccess = true;
-                        } else {
-                            loginSuccess = false;
-                        }
-                        break;
-                    } else {
-                        line = reader.readNext();
-                    }
-                }
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (CsvValidationException e) {
-                throw new RuntimeException(e);
-            }
-
-            if (loginSuccess) {
-                //load main menu + profile of user
-
-            } else {
-                //login failed
-                System.out.println("login failed!");
-                userExit = true;
-            }
-
-
+        Scanner userIn = new Scanner(System.in);
+        System.out.println("Enter username: ");
+        user = userIn.nextLine();
+        System.out.println("Please enter password: ");
+        pass = userIn.nextLine();
+        currentProfile = ProfileController.login(user, pass);
+        if (currentProfile == null) {
+            System.out.println("login failed!");
+        } else {
+            //load main menu
         }
-        userExit = false;
-
     }
 
     public boolean[] loadQuiz() {
@@ -226,7 +180,8 @@ public class UserInterface {
 
         return quizAnswers;
     }
-    public void loadMatches(){
+
+    public void loadMatches() {
 
 
     }
