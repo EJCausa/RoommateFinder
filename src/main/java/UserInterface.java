@@ -1,3 +1,4 @@
+import javax.swing.text.FlowView;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -150,6 +151,7 @@ public class UserInterface {
         } else {
             //load main menu
             System.out.println("Success");
+            loadMatches();
         }
     }
 
@@ -183,8 +185,13 @@ public class UserInterface {
     }
 
     public void loadMatches() {
+        String[] matchArray = ProfileHandler.getMatchList(currentProfile);
 
-
+        for(int i = 0;i<matchArray.length;i++){
+            System.out.print(matchArray[i]);
+            i++;
+            System.out.println(" compatabilty: " + matchArray[i]);
+        }
     }
 }
 

@@ -66,9 +66,41 @@ public class ProfileHandler {
 
     }
 
-    public static Profile getMatchList(Profile currProfile) {
-        Profile profile1;
-        return null;
+    public static String[] getMatchList(Profile currProfile) {
+
+        ArrayList<String> ALmatches = new ArrayList<String>();
+
+        File file = new File("accounts.csv");
+        try {
+            FileReader fr = new FileReader(file);
+            CSVReader reader = new CSVReader(fr);
+            for (int i = 0; i < 2; i++) {
+                if (i != currProfile.lineNum) {
+
+                    if (reader.peek() != null) {
+                    String[] arr = reader.readNext();
+
+                        boolean whar = false;
+                        Match matchClass = new Match(arr[1], whar);
+                        boolean[] quizArr = new boolean[10];
+
+                        for (int j = 4; j < 14; j++) {
+                            boolean b1 = Boolean.parseBoolean(arr[j]);
+                            quizArr[j - 4] = b1;
+                        }
+                        int value = matchClass.computeMatchValue(currProfile.quizAnswers, quizArr);
+                        ALmatches.add(arr[1]);
+                        ALmatches.add(Integer.toString(value));
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        String[] matches = ALmatches.toArray(new String[ALmatches.size()]);
+        return matches;
     }
 
     public static void takeQuiz(Profile profile, boolean[] quiz) {

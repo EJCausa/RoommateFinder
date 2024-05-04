@@ -87,6 +87,7 @@ public class Profile {
     }
 
     public ArrayList<Match> getMatches() {
+
         return this.matches;
     }
 
