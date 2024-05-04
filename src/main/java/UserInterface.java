@@ -1,3 +1,9 @@
+import com.opencsv.CSVReader;
+import com.opencsv.exceptions.CsvValidationException;
+
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -148,14 +154,41 @@ public class UserInterface {
             System.out.print("Password: ");
             pass = userIn.nextLine();
 
-            //database login validation here, set loginSuccess accordingly
 
+            //database login validation here, set loginSuccess accordingly
+            File file = new File("../accounts.csv");
+
+
+            try {
+                FileReader fileReader = new FileReader(file);
+                CSVReader reader = new CSVReader(fileReader);
+                reader.skip(1);
+                String[] line = reader.readNext();
+                while (reader.peek() != null) {
+                    if (line[0].equals(username)) {
+                        if (line[3].equals(pass)) {
+                            loginSuccess = true;
+                        } else {
+                            loginSuccess = false;
+                        }
+                        break;
+                    } else {
+                        line = reader.readNext();
+                    }
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (CsvValidationException e) {
+                throw new RuntimeException(e);
+            }
 
             if (loginSuccess) {
-                //load main menu
+                //load main menu + profile of user
 
             } else {
                 //login failed
+                System.out.println("login failed!");
                 userExit = true;
             }
 
