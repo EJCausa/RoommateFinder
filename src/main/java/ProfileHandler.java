@@ -27,6 +27,9 @@ public class ProfileHandler {
                 if (line[0].equals(user)) {
                     if (line[3].equals(pass)) {
                         Profile prof = new Profile(user, line[1], line[2], line[3]);
+                        for (int i = 0; i < 10; i++) {
+                            prof.quizAnswers[i] = Boolean.valueOf(line[i + 4]);
+                        }
                         prof.lineNum = (int) reader.getLinesRead();
                         return prof;
                     }
