@@ -12,8 +12,8 @@ public class ProfileController {
     return pfpOBJ;
 
     }
-    public static Profile getMatchList(Profile currProfile){
-        ProfileHandlerOBJ.getMatchList()
+    public static Profile[] getMatchList(Profile currProfile){
+        ProfileHandlerOBJ.getMatchList();
     }
 
     public static void takeQuiz(Profile profile, boolean[] quiz){
