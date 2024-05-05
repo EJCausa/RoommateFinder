@@ -162,19 +162,15 @@ public class UserInterface {
                 input = userIn.nextLine();
 
                 switch (input) {
-                    case "1":
+                    case "1": //retake quiz
 
-                    case "2":
+                    case "2": //retrieve matches
                         loadMatches();
-                    case "3":
+                    case "3"://update profile
 
                 }
 
 
-                //retake quiz
-
-                //retrieve matches
-                //update profile
             }
         }
     }
