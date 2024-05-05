@@ -1,3 +1,4 @@
+import javax.swing.text.FlowView;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -155,18 +156,20 @@ public class UserInterface {
 
             while (!userExit) {
 
-                System.out.println("Enter 1 for retake quiz");
-                System.out.println("Enter 2 for retrieve matches");
-                System.out.println("Enter 3 for update profile");
+                System.out.println("Options are: /retake quiz, /retrieve matches, /update profile");
 
                 input = userIn.nextLine();
 
                 switch (input) {
-                    case "1": //retake quiz
+                    case "/retake quiz": //retake quiz
 
-                    case "2": //retrieve matches
-                        loadMatches();
-                    case "3"://update profile
+                    case "/retrieve matches": //retrieve matches
+                        loadRetrieval();
+                        break;
+                    case "/update profile"://update profile
+
+                    default:
+                        System.out.println("Invalid Command! Please use of the given options!");
 
                 }
 
@@ -207,14 +210,72 @@ public class UserInterface {
         return quizAnswers;
     }
 
-    public void loadMatches() {
+    public void loadMatches(int matchCeiling, int compatFloor) {
         String[] matchArray = ProfileHandler.getMatchList(currentProfile);
 
-        for (int i = 0; i < matchArray.length; i++) {
-            System.out.print(matchArray[i]);
+        for(int i = 0;i<matchArray.length && i < matchCeiling;i++){
+            String matchedUser = matchArray[i];
             i++;
-            System.out.println(" compatabilty: " + matchArray[i]);
+            if(Integer.parseInt(matchArray[i]) > compatFloor)
+            {
+                System.out.print(matchedUser);
+                System.out.println(" compatabilty: " + matchArray[i]);
+            }
+
         }
+    }
+
+    public void loadRetrieval()
+    {
+        Scanner userIn = new Scanner(System.in);
+        System.out.println("Do you want to filter your matches? Yes or no?");
+
+        String input;
+        input = userIn.nextLine();
+
+        boolean filterLoopFlag = true;
+        boolean filtersActiveLoop = false;
+        while(filterLoopFlag)
+        {
+            switch(input) {
+                case "yes":
+                    filterLoopFlag = false;
+                    filtersActiveLoop = true;
+                    break;
+                case "no":
+                    filterLoopFlag = false;
+                    break;
+                default:
+                    System.out.println("Please either input yes or no");
+                    input = userIn.nextLine();
+            }
+        }
+
+        int displayMatchAmount = -1;
+        int displayMatchCompat = -1;
+        System.out.println("Filter options: minimum compatibility, maximum amount of matches. Input finish to finish");
+        while(filtersActiveLoop)
+        {
+            input = userIn.nextLine();
+            switch(input){
+                case "compatibility":
+                    System.out.println("Please input the minimum compatibility score you want");
+                    displayMatchCompat = userIn.nextInt();
+                    break;
+                case "amount":
+                    System.out.println("Please input the maximum amount of matches to display");
+                    displayMatchAmount = userIn.nextInt();
+                    break;
+                case "finish":
+                    filtersActiveLoop = false;
+                    break;
+                default:
+                    System.out.println("Filter options: minimum compatibility, maximum amount of matches. Input finish to finish");
+            }
+        }
+
+        loadMatches(displayMatchAmount, displayMatchCompat);
+
     }
 }
 
