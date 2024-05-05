@@ -75,10 +75,10 @@ public class ProfileHandler {
             FileReader fr = new FileReader(file);
             CSVReader reader = new CSVReader(fr);
             for (int i = 0; i < 5; i++) {
-                if (i != currProfile.lineNum) {
-
-                    if (reader.peek() != null) {
+                if (reader.peek() != null) {
                     String[] arr = reader.readNext();
+                    if (i != currProfile.lineNum - 1) {
+
 
                         boolean whar = false;
                         Match matchClass = new Match(arr[1], whar);
