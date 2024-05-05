@@ -1,4 +1,3 @@
-import javax.swing.text.FlowView;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -140,6 +139,8 @@ public class UserInterface {
     public void loadLogin() {
         String user;
         String pass;
+        String input;
+        userExit = false;
         Scanner userIn = new Scanner(System.in);
         System.out.println("Enter username: ");
         user = userIn.nextLine();
@@ -151,32 +152,55 @@ public class UserInterface {
         } else {
             //load main menu
             System.out.println("Success");
-            loadMatches();
+
+            while (!userExit) {
+
+                System.out.println("Enter 1 for retake quiz");
+                System.out.println("Enter 2 for retrieve matches");
+                System.out.println("Enter 3 for update profile");
+
+                input = userIn.nextLine();
+
+                switch (input) {
+                    case "1":
+
+                    case "2":
+                        loadMatches();
+                    case "3":
+
+                }
+
+
+                //retake quiz
+
+                //retrieve matches
+                //update profile
+            }
         }
     }
 
     public boolean[] loadQuiz() {
         String[] quizQuestions = {
-            "I am generally a clean person.",
-            "I like to go out often",
-            "I enjoy having friends over",
-            "I go to bed before 11pm most nights",
-            "I drink often",
-            "I consume weed often",
-            "I will study in communal spaces often",
-            "I smoke cigarettes often",
-            "I will bring pets to the living space",
-            "I will have a job while in school"
+                "I am generally a clean person.",
+                "I like to go out often",
+                "I enjoy having friends over",
+                "I go to bed before 11pm most nights",
+                "I drink often",
+                "I consume weed often",
+                "I will study in communal spaces often",
+                "I smoke cigarettes often",
+                "I will bring pets to the living space",
+                "I will have a job while in school"
         };
         boolean[] quizAnswers = new boolean[10];
         Scanner userIn = new Scanner(System.in);
 
-        
+
         for (int i = 0; i < quizQuestions.length; i++) {
             System.out.println("\nTrue or False:");
             System.out.println(quizQuestions[i]);
             String input = userIn.nextLine();
-            while(!(input.toUpperCase().equals("TRUE") || input.toUpperCase().equals("FALSE"))){
+            while (!(input.toUpperCase().equals("TRUE") || input.toUpperCase().equals("FALSE"))) {
                 System.out.println("Input \"TRUE\" or \"FALSE:\"");
                 //System.out.println(quizQuestions[i]);
                 input = userIn.nextLine();
@@ -190,7 +214,7 @@ public class UserInterface {
     public void loadMatches() {
         String[] matchArray = ProfileHandler.getMatchList(currentProfile);
 
-        for(int i = 0;i<matchArray.length;i++){
+        for (int i = 0; i < matchArray.length; i++) {
             System.out.print(matchArray[i]);
             i++;
             System.out.println(" compatabilty: " + matchArray[i]);
