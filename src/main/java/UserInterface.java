@@ -156,30 +156,33 @@ public class UserInterface {
     }
 
     public boolean[] loadQuiz() {
+        String[] quizQuestions = {
+            "I am generally a clean person.",
+            "I like to go out often",
+            "I enjoy having friends over",
+            "I go to bed before 11pm most nights",
+            "I drink often",
+            "I consume weed often",
+            "I will study in communal spaces often",
+            "I smoke cigarettes often",
+            "I will bring pets to the living space",
+            "I will have a job while in school"
+        };
         boolean[] quizAnswers = new boolean[10];
         Scanner userIn = new Scanner(System.in);
 
-        System.out.println("True or False:");
-        System.out.println("I am generally a clean person.");
-        quizAnswers[0] = userIn.nextBoolean();
-        System.out.println("I like to go out often");
-        quizAnswers[1] = userIn.nextBoolean();
-        System.out.println("I enjoy having friends over");
-        quizAnswers[2] = userIn.nextBoolean();
-        System.out.println("I go to bed before 11pm most nights");
-        quizAnswers[3] = userIn.nextBoolean();
-        System.out.println("I drink often");
-        quizAnswers[4] = userIn.nextBoolean();
-        System.out.println("I consume weed often");
-        quizAnswers[5] = userIn.nextBoolean();
-        System.out.println("I will study in communal spaces often");
-        quizAnswers[6] = userIn.nextBoolean();
-        System.out.println("I smoke often");
-        quizAnswers[7] = userIn.nextBoolean();
-        System.out.println("I will bring pets to the living space");
-        quizAnswers[8] = userIn.nextBoolean();
-        System.out.println("I will have a job while in school");
-        quizAnswers[9] = userIn.nextBoolean();
+        
+        for (int i = 0; i < quizQuestions.length; i++) {
+            System.out.println("\nTrue or False:");
+            System.out.println(quizQuestions[i]);
+            String input = userIn.nextLine();
+            while(!(input.toUpperCase().equals("TRUE") || input.toUpperCase().equals("FALSE"))){
+                System.out.println("Input \"TRUE\" or \"FALSE:\"");
+                //System.out.println(quizQuestions[i]);
+                input = userIn.nextLine();
+            }
+            quizAnswers[i] = Boolean.valueOf(input);
+        }
 
         return quizAnswers;
     }
