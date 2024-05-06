@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class ProfileHandler {
@@ -117,7 +118,185 @@ public class ProfileHandler {
         return matches;
     }
 
-    public static void takeQuiz(Profile profile, boolean[] quiz) {
+    public static void retakeQuiz(Profile profile, boolean[] quiz) {
+        profile.takeQuiz(quiz);
+        //change csv answers
+        File file = new File("accounts.csv");
+        try {
+            FileReader fr = new FileReader(file);
+            CSVReader reader = new CSVReader(fr);
 
+            List<String[]> csvContent = reader.readAll();
+
+            int lineIndex = -1;
+            for(int i = 0; i < csvContent.size(); i++)
+            {
+                if(csvContent.get(i)[0].equals(profile.getUsername()))
+                {
+                    lineIndex = i;
+                }
+            }
+
+            for(int i = 0; i < 10; i++)
+            {
+                csvContent.get(lineIndex)[i+4] = String.valueOf(quiz[i]);
+            }
+
+            reader.close();
+            FileWriter fw = new FileWriter(file);
+            CSVWriter writer = new CSVWriter(fw);
+
+            writer.writeAll(csvContent);
+            writer.flush();
+            writer.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void updateUsername(Profile profile, String username)
+    {
+        File file = new File("accounts.csv");
+        try {
+            FileReader fr = new FileReader(file);
+            CSVReader reader = new CSVReader(fr);
+
+            List<String[]> csvContent = reader.readAll();
+
+            int lineIndex = -1;
+            for(int i = 0; i < csvContent.size(); i++)
+            {
+                if(csvContent.get(i)[0].equals(profile.getUsername()))
+                {
+                    lineIndex = i;
+                }
+            }
+
+            csvContent.get(lineIndex)[0] = username;
+
+            reader.close();
+            FileWriter fw = new FileWriter(file);
+            CSVWriter writer = new CSVWriter(fw);
+
+            writer.writeAll(csvContent);
+            writer.flush();
+            writer.close();
+            profile.setUsername(username);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void updateEmail(Profile profile, String email)
+    {
+        File file = new File("accounts.csv");
+        try {
+            FileReader fr = new FileReader(file);
+            CSVReader reader = new CSVReader(fr);
+
+            List<String[]> csvContent = reader.readAll();
+
+            int lineIndex = -1;
+            for(int i = 0; i < csvContent.size(); i++)
+            {
+                if(csvContent.get(i)[0].equals(profile.getUsername()))
+                {
+                    lineIndex = i;
+                }
+            }
+
+            csvContent.get(lineIndex)[1] = email;
+
+            reader.close();
+            FileWriter fw = new FileWriter(file);
+            CSVWriter writer = new CSVWriter(fw);
+
+            writer.writeAll(csvContent);
+            writer.flush();
+            writer.close();
+            profile.setEmail(email);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void updatePhone(Profile profile, String phone)
+    {
+        File file = new File("accounts.csv");
+        try {
+            FileReader fr = new FileReader(file);
+            CSVReader reader = new CSVReader(fr);
+
+            List<String[]> csvContent = reader.readAll();
+
+            int lineIndex = -1;
+            for(int i = 0; i < csvContent.size(); i++)
+            {
+                if(csvContent.get(i)[0].equals(profile.getUsername()))
+                {
+                    lineIndex = i;
+                }
+            }
+
+            csvContent.get(lineIndex)[2] = phone;
+
+            reader.close();
+            FileWriter fw = new FileWriter(file);
+            CSVWriter writer = new CSVWriter(fw);
+
+            writer.writeAll(csvContent);
+            writer.flush();
+            writer.close();
+            profile.setPhoneNumber(phone);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void deleteAcct(Profile profile)
+    {
+        File file = new File("accounts.csv");
+        try {
+            FileReader fr = new FileReader(file);
+            CSVReader reader = new CSVReader(fr);
+
+            List<String[]> csvContent = reader.readAll();
+
+            int lineIndex = -1;
+            for(int i = 0; i < csvContent.size(); i++)
+            {
+                if(csvContent.get(i)[0].equals(profile.getUsername()))
+                {
+                    lineIndex = i;
+                }
+            }
+
+            csvContent.remove(lineIndex);
+
+            reader.close();
+            FileWriter fw = new FileWriter(file);
+            CSVWriter writer = new CSVWriter(fw);
+
+            writer.writeAll(csvContent);
+            writer.flush();
+            writer.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static String getUsername(Profile profile)
+    {
+        return profile.getUsername();
+    }
+
+    public static String getEmail(Profile profile)
+    {
+        return profile.getEmail();
+    }
+
+    public static String getPhone(Profile profile)
+    {
+        return profile.getPhoneNumber();
     }
 }

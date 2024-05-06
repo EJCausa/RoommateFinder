@@ -155,18 +155,33 @@ public class UserInterface {
 
             while (!userExit) {
 
-                System.out.println("Enter 1 for retake quiz");
-                System.out.println("Enter 2 for retrieve matches");
-                System.out.println("Enter 3 for update profile");
+                System.out.println("Options are: /exit, /retake quiz, /retrieve matches, /update profile, /delete account, /view profile");
 
                 input = userIn.nextLine();
 
                 switch (input) {
-                    case "1": //retake quiz
-
-                    case "2": //retrieve matches
-                        loadMatches();
-                    case "3"://update profile
+                    case "/exit":
+                        userExit = true;
+                        userIn.nextLine();
+                        break;
+                    case "/retake quiz": //retake quiz
+                        loadRetake(currentProfile);
+                        break;
+                    case "/retrieve matches": //retrieve matches
+                        loadRetrieval();
+                        break;
+                    case "/update profile"://update profile
+                        loadUpdateProfile(currentProfile);
+                        break;
+                    case "/delete account":
+                        deleteAcct(currentProfile);
+                        userExit = true;
+                        break;
+                    case "/view profile":
+                        viewProfile(currentProfile);
+                        break;
+                    default:
+                        System.out.println("Invalid Command! Please use of the given options!");
 
                 }
 
@@ -207,14 +222,127 @@ public class UserInterface {
         return quizAnswers;
     }
 
-    public void loadMatches() {
+    public void loadMatches(int matchCeiling, int compatFloor) {
         String[] matchArray = ProfileHandler.getMatchList(currentProfile);
 
-        for (int i = 0; i < matchArray.length; i++) {
-            System.out.print(matchArray[i]);
+        for (int i = 0; i < matchArray.length && i < matchCeiling; i++) {
+            String matchedUser = matchArray[i];
             i++;
-            System.out.println(" compatabilty: " + matchArray[i]);
+            if (Integer.parseInt(matchArray[i]) > compatFloor) {
+                System.out.print(matchedUser);
+                System.out.println(" compatabilty: " + matchArray[i]);
+            }
+
         }
+    }
+
+    public void loadRetrieval() {
+        Scanner userIn = new Scanner(System.in);
+        System.out.println("Do you want to filter your matches? Yes or no?");
+
+        String input;
+        input = userIn.nextLine();
+
+        boolean filterLoopFlag = true;
+        boolean filtersActiveLoop = false;
+        while (filterLoopFlag) {
+            switch (input) {
+                case "yes":
+                    filterLoopFlag = false;
+                    filtersActiveLoop = true;
+                    break;
+                case "no":
+                    filterLoopFlag = false;
+                    break;
+                default:
+                    System.out.println("Please either input yes or no");
+                    input = userIn.nextLine();
+            }
+        }
+
+        int displayMatchAmount = 20;
+        int displayMatchCompat = 0;
+        while (filtersActiveLoop) {
+            System.out.println("Filter options: minimum compatibility, maximum amount of matches. Input finish to finish");
+            input = userIn.nextLine();
+            switch (input) {
+                case "compatibility":
+                    System.out.println("Please input the minimum compatibility score you want");
+                    displayMatchCompat = userIn.nextInt();
+                    userIn.nextLine();
+                    break;
+                case "amount":
+                    System.out.println("Please input the maximum amount of matches to display");
+                    displayMatchAmount = userIn.nextInt();
+                    userIn.nextLine();
+                    break;
+                case "finish":
+                    filtersActiveLoop = false;
+                    break;
+                default:
+                    System.out.println("Invalid Input! Please input valid input!");
+            }
+        }
+
+        loadMatches(displayMatchAmount, displayMatchCompat);
+
+    }
+
+    public void loadRetake(Profile profile) {
+        boolean[] newAnswers = loadQuiz();
+        ProfileController.retakeQuiz(profile, newAnswers);
+    }
+
+    public void loadUpdateProfile(Profile profile) {
+        Scanner userIn = new Scanner(System.in);
+        String input;
+        boolean updateLoopFlag = true;
+
+        String newUsername;
+        String newEmail;
+        String newPhone;
+
+        while (updateLoopFlag) {
+            System.out.println("Please enter a field to update: username, email, phone number. Type exit to exit");
+            input = userIn.nextLine();
+            switch (input) {
+                case "username":
+                    System.out.println("Enter a username: ");
+                    newUsername = userIn.nextLine();
+                    ProfileController.updateUsername(profile, newUsername);
+                    break;
+                case "email":
+                    System.out.println("Enter an email address: ");
+                    newEmail = userIn.nextLine();
+                    ProfileController.updateEmail(profile, newEmail);
+                    break;
+                case "phone number":
+                    System.out.println("Enter a phone number: ");
+                    newPhone = userIn.nextLine();
+                    ProfileController.updatePhone(profile, newPhone);
+                    break;
+                case "exit":
+                    updateLoopFlag = false;
+                    break;
+                default:
+                    System.out.println("Invalid input.");
+            }
+        }
+    }
+
+    public void deleteAcct(Profile profile)
+    {
+        ProfileController.deleteAcct(profile);
+    }
+
+    public void viewProfile(Profile profile)
+    {
+        String username = "Username: " + ProfileController.getUsername(profile);
+        String email = "Email: " + ProfileController.getEmail(profile);
+        String phone = "Phone: " + ProfileController.getPhone(profile);
+        System.out.println(username);
+        System.out.println(email);
+        System.out.println(phone);
     }
 }
 

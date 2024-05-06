@@ -21,8 +21,42 @@ public class ProfileController {
        return matches;
     }
 
-    public static void takeQuiz(Profile profile, boolean[] quiz){
-        ProfileHandlerOBJ.takeQuiz(profile,quiz);
+    public static void retakeQuiz(Profile profile, boolean[] quiz){
+        ProfileHandlerOBJ.retakeQuiz(profile,quiz);
     }
 
+    public static void updateUsername(Profile profile, String newUsername)
+    {
+        ProfileHandlerOBJ.updateUsername(profile, newUsername);
+    }
+
+    public static void updateEmail(Profile profile, String newEmail)
+    {
+        ProfileHandlerOBJ.updateEmail(profile, newEmail);
+    }
+
+    public static void updatePhone(Profile profile, String newPhone)
+    {
+        ProfileHandlerOBJ.updatePhone(profile, newPhone);
+    }
+
+    public static void deleteAcct(Profile profile)
+    {
+        ProfileHandlerOBJ.deleteAcct(profile);
+    }
+
+    public static String getUsername(Profile profile)
+    {
+        return ProfileHandlerOBJ.getUsername(profile);
+    }
+
+    public static String getEmail(Profile profile)
+    {
+        return ProfileHandlerOBJ.getEmail(profile);
+    }
+
+    public static String getPhone(Profile profile)
+    {
+        return ProfileHandlerOBJ.getPhone(profile);
+    }
 }
