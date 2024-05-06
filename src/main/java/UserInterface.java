@@ -49,22 +49,21 @@ public class UserInterface {
             ____________________________________________________________________________
 
 
+                        .-------------------.           .-------------------.
+                        |  /delete account  |           |  /update profile  |
+                        '-------------------'           '-------------------'
+                            
+                        .--------------------.            .-----------------.
+                        | /retrieve matches  |            |  /view profile  |
+                        '--------------------'            '-----------------'
 
+                        .----------------.                        .---------.
+                        |  /retake quiz  |                        |  /exit  |
+                        '----------------'                        '---------'
 
-
-
-
-
-                              .-----------------.    .-----------------.
-                              |  /view matches  |    |  /view profile  |
-                              '-----------------'    '-----------------'
-
-                                     .----------.    .---------.
-                                     |  /inbox  |    |  /exit  |
-                                     '----------'    '---------'
-
-
-
+                        .----------.  .------------------.  .---------------.
+                        |  /inbox  |  |  /favorite user  |  |  /block user  |
+                        '----------'  '------------------'  '---------------'
 
                             Welcome to the homepage! Type one of the commands!
 
@@ -172,28 +171,15 @@ public class UserInterface {
         ProfileController.signUp(username, email, phone, pass, quizAnswer);
     }
 
-    public void loadLogin() {
-        String user;
-        String pass;
-        String input;
-        userExit = false;
-        Scanner userIn = new Scanner(System.in);
-        System.out.println("Enter username: ");
-        user = userIn.nextLine();
-        System.out.println("Please enter password: ");
-        pass = userIn.nextLine();
-        currentProfile = ProfileController.login(user, pass);
-        if (currentProfile == null) {
-            System.out.println("login failed!");
-        } else {
-            clearTerminal();
-            System.out.println(homePage);
+    public void getHomePage() {
+        clearTerminal();
+            System.out.println(this.homePage);
             System.out.println("Success");
 
             while (!userExit) {
-
-                System.out.println("Options are: /exit, /retake quiz, /retrieve matches, /update profile, /delete account, /view profile");
-
+                Scanner userIn = new Scanner(System.in);
+                //System.out.println("Options are: /exit, /retake quiz, /retrieve matches, /update profile, /delete account, /view profile");
+                String input;
                 input = userIn.nextLine();
 
                 switch (input) {
@@ -224,6 +210,24 @@ public class UserInterface {
 
 
             }
+
+    }
+
+    public void loadLogin() {
+        String user;
+        String pass;
+        
+        userExit = false;
+        Scanner userIn = new Scanner(System.in);
+        System.out.println("Enter username: ");
+        user = userIn.nextLine();
+        System.out.println("Please enter password: ");
+        pass = userIn.nextLine();
+        currentProfile = ProfileController.login(user, pass);
+        if (currentProfile == null) {
+            System.out.println("login failed!");
+        } else {
+            getHomePage();
         }
     }
 
@@ -328,6 +332,10 @@ public class UserInterface {
     public void loadRetake(Profile profile) {
         boolean[] newAnswers = loadQuiz();
         ProfileController.retakeQuiz(profile, newAnswers);
+        clearTerminal();
+        System.out.println(this.homePage);
+        System.out.println("[QUIZ ANSWERS UPDATED]");
+
     }
 
     public void loadUpdateProfile(Profile profile) {
@@ -365,6 +373,7 @@ public class UserInterface {
                     System.out.println("Invalid input.");
             }
         }
+        getHomePage();
     }
 
     public void deleteAcct(Profile profile)
