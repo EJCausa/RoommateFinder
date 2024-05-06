@@ -155,7 +155,7 @@ public class UserInterface {
 
             while (!userExit) {
 
-                System.out.println("Options are: /exit, /retake quiz, /retrieve matches, /update profile, /delete account");
+                System.out.println("Options are: /exit, /retake quiz, /retrieve matches, /update profile, /delete account, /view profile");
 
                 input = userIn.nextLine();
 
@@ -176,6 +176,9 @@ public class UserInterface {
                     case "/delete account":
                         deleteAcct(currentProfile);
                         userExit = true;
+                        break;
+                    case "/view profile":
+                        viewProfile(currentProfile);
                         break;
                     default:
                         System.out.println("Invalid Command! Please use of the given options!");
@@ -330,6 +333,16 @@ public class UserInterface {
     public void deleteAcct(Profile profile)
     {
         ProfileController.deleteAcct(profile);
+    }
+
+    public void viewProfile(Profile profile)
+    {
+        String username = "Username: " + ProfileController.getUsername(profile);
+        String email = "Email: " + ProfileController.getEmail(profile);
+        String phone = "Phone: " + ProfileController.getPhone(profile);
+        System.out.println(username);
+        System.out.println(email);
+        System.out.println(phone);
     }
 }
 

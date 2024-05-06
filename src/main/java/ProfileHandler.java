@@ -270,4 +270,19 @@ public class ProfileHandler {
             e.printStackTrace();
         }
     }
+
+    public static String getUsername(Profile profile)
+    {
+        return profile.getUsername();
+    }
+
+    public static String getEmail(Profile profile)
+    {
+        return profile.getEmail();
+    }
+
+    public static String getPhone(Profile profile)
+    {
+        return profile.getPhoneNumber();
+    }
 }

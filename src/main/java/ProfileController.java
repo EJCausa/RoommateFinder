@@ -44,4 +44,19 @@ public class ProfileController {
     {
         ProfileHandlerOBJ.deleteAcct(profile);
     }
+
+    public static String getUsername(Profile profile)
+    {
+        return ProfileHandlerOBJ.getUsername(profile);
+    }
+
+    public static String getEmail(Profile profile)
+    {
+        return ProfileHandlerOBJ.getEmail(profile);
+    }
+
+    public static String getPhone(Profile profile)
+    {
+        return ProfileHandlerOBJ.getPhone(profile);
+    }
 }
