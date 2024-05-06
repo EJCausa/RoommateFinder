@@ -35,7 +35,7 @@ public class UserInterface {
 
 
                             .-------------------.    .-----------.
-                            |  /create account  |    |  /login  |
+                            |  /create account  |    |  /login   |
                             '-------------------'    '-----------'
 
 
@@ -45,7 +45,40 @@ public class UserInterface {
                             type \u001b[1m/back\u001b[0m to return to the previous page
             ____________________________________________________________________________""";
 
+            private final String homePage = """
+            ____________________________________________________________________________
 
+
+
+
+
+
+
+
+                              .-----------------.    .-----------------.
+                              |  /view matches  |    |  /view profile  |
+                              '-----------------'    '-----------------'
+
+                                     .----------.    .---------.
+                                     |  /inbox  |    |  /exit  |
+                                     '----------'    '---------'
+
+
+
+
+                            Welcome to the homepage! Type one of the commands!
+
+            ____________________________________________________________________________""";
+
+
+
+
+
+    private void clearTerminal() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
+    
     public void loadPage() {
 
 
@@ -116,6 +149,9 @@ public class UserInterface {
         //make sure username is not taken
 
         while (!input.equals(pass)) {
+            if(input.equals("/exit")) {
+                loadExitPg();
+            }
             System.out.print("password: ");
             pass = userIn.nextLine();
             System.out.print("Please confirm password: ");
@@ -150,7 +186,8 @@ public class UserInterface {
         if (currentProfile == null) {
             System.out.println("login failed!");
         } else {
-            //load main menu
+            clearTerminal();
+            System.out.println(homePage);
             System.out.println("Success");
 
             while (!userExit) {
