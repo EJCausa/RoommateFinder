@@ -65,7 +65,7 @@ public class UserInterface {
                         |  /inbox  |  |  /favorite user  |  |  /block user  |
                         '----------'  '------------------'  '---------------'
 
-                            Welcome to the homepage! Type one of the commands!
+                          Welcome to the homepage! Type one of the commands!
 
             ____________________________________________________________________________""";
 
@@ -95,6 +95,7 @@ public class UserInterface {
                     break;
                 case "/exit":
                     loadExitPg();
+                    break;
                 case "/create account":
                     loadAcctCreation();
                     break;
@@ -112,12 +113,10 @@ public class UserInterface {
         Scanner userIn = new Scanner(System.in);
         String input;
 
+        clearTerminal();
         System.out.println(confirmExitPage);
 
         while (!userExit) {
-            System.out.print("\033[H\033[2J");
-            System.out.flush();
-            System.out.println(confirmExitPage);
             input = userIn.nextLine();
             switch (input) {
                 case "yes":
@@ -184,8 +183,8 @@ public class UserInterface {
 
                 switch (input) {
                     case "/exit":
-                        userExit = true;
-                        userIn.nextLine();
+                        loadExitPg();
+                        getHomePage();
                         break;
                     case "/retake quiz": //retake quiz
                         loadRetake(currentProfile);
