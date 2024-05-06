@@ -40,4 +40,8 @@ public class ProfileController {
         ProfileHandlerOBJ.updatePhone(profile, newPhone);
     }
 
+    public static void deleteAcct(Profile profile)
+    {
+        ProfileHandlerOBJ.deleteAcct(profile);
+    }
 }

@@ -238,4 +238,36 @@ public class ProfileHandler {
             e.printStackTrace();
         }
     }
+
+    public static void deleteAcct(Profile profile)
+    {
+        File file = new File("accounts.csv");
+        try {
+            FileReader fr = new FileReader(file);
+            CSVReader reader = new CSVReader(fr);
+
+            List<String[]> csvContent = reader.readAll();
+
+            int lineIndex = -1;
+            for(int i = 0; i < csvContent.size(); i++)
+            {
+                if(csvContent.get(i)[0].equals(profile.getUsername()))
+                {
+                    lineIndex = i;
+                }
+            }
+
+            csvContent.remove(lineIndex);
+
+            reader.close();
+            FileWriter fw = new FileWriter(file);
+            CSVWriter writer = new CSVWriter(fw);
+
+            writer.writeAll(csvContent);
+            writer.flush();
+            writer.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

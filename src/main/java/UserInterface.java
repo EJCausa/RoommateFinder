@@ -155,7 +155,7 @@ public class UserInterface {
 
             while (!userExit) {
 
-                System.out.println("Options are: /exit, /retake quiz, /retrieve matches, /update profile");
+                System.out.println("Options are: /exit, /retake quiz, /retrieve matches, /update profile, /delete account");
 
                 input = userIn.nextLine();
 
@@ -172,6 +172,10 @@ public class UserInterface {
                         break;
                     case "/update profile"://update profile
                         loadUpdateProfile(currentProfile);
+                        break;
+                    case "/delete account":
+                        deleteAcct(currentProfile);
+                        userExit = true;
                         break;
                     default:
                         System.out.println("Invalid Command! Please use of the given options!");
@@ -218,11 +222,10 @@ public class UserInterface {
     public void loadMatches(int matchCeiling, int compatFloor) {
         String[] matchArray = ProfileHandler.getMatchList(currentProfile);
 
-        for(int i = 0;i<matchArray.length && i < matchCeiling;i++){
+        for (int i = 0; i < matchArray.length && i < matchCeiling; i++) {
             String matchedUser = matchArray[i];
             i++;
-            if(Integer.parseInt(matchArray[i]) > compatFloor)
-            {
+            if (Integer.parseInt(matchArray[i]) > compatFloor) {
                 System.out.print(matchedUser);
                 System.out.println(" compatabilty: " + matchArray[i]);
             }
@@ -230,8 +233,7 @@ public class UserInterface {
         }
     }
 
-    public void loadRetrieval()
-    {
+    public void loadRetrieval() {
         Scanner userIn = new Scanner(System.in);
         System.out.println("Do you want to filter your matches? Yes or no?");
 
@@ -240,9 +242,8 @@ public class UserInterface {
 
         boolean filterLoopFlag = true;
         boolean filtersActiveLoop = false;
-        while(filterLoopFlag)
-        {
-            switch(input) {
+        while (filterLoopFlag) {
+            switch (input) {
                 case "yes":
                     filterLoopFlag = false;
                     filtersActiveLoop = true;
@@ -258,11 +259,10 @@ public class UserInterface {
 
         int displayMatchAmount = 20;
         int displayMatchCompat = 0;
-        while(filtersActiveLoop)
-        {
+        while (filtersActiveLoop) {
             System.out.println("Filter options: minimum compatibility, maximum amount of matches. Input finish to finish");
             input = userIn.nextLine();
-            switch(input){
+            switch (input) {
                 case "compatibility":
                     System.out.println("Please input the minimum compatibility score you want");
                     displayMatchCompat = userIn.nextInt();
@@ -285,14 +285,12 @@ public class UserInterface {
 
     }
 
-    public void loadRetake(Profile profile)
-    {
+    public void loadRetake(Profile profile) {
         boolean[] newAnswers = loadQuiz();
         ProfileController.retakeQuiz(profile, newAnswers);
     }
 
-    public void loadUpdateProfile(Profile profile)
-    {
+    public void loadUpdateProfile(Profile profile) {
         Scanner userIn = new Scanner(System.in);
         String input;
         boolean updateLoopFlag = true;
@@ -301,12 +299,10 @@ public class UserInterface {
         String newEmail;
         String newPhone;
 
-        while(updateLoopFlag)
-        {
+        while (updateLoopFlag) {
             System.out.println("Please enter a field to update: username, email, phone number. Type exit to exit");
             input = userIn.nextLine();
-            switch(input)
-            {
+            switch (input) {
                 case "username":
                     System.out.println("Enter a username: ");
                     newUsername = userIn.nextLine();
@@ -329,6 +325,11 @@ public class UserInterface {
                     System.out.println("Invalid input.");
             }
         }
+    }
+
+    public void deleteAcct(Profile profile)
+    {
+        ProfileController.deleteAcct(profile);
     }
 }
 
