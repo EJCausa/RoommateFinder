@@ -171,7 +171,8 @@ public class UserInterface {
                         loadRetrieval();
                         break;
                     case "/update profile"://update profile
-
+                        loadUpdateProfile(currentProfile);
+                        break;
                     default:
                         System.out.println("Invalid Command! Please use of the given options!");
 
@@ -288,6 +289,46 @@ public class UserInterface {
     {
         boolean[] newAnswers = loadQuiz();
         ProfileController.retakeQuiz(profile, newAnswers);
+    }
+
+    public void loadUpdateProfile(Profile profile)
+    {
+        Scanner userIn = new Scanner(System.in);
+        String input;
+        boolean updateLoopFlag = true;
+
+        String newUsername;
+        String newEmail;
+        String newPhone;
+
+        while(updateLoopFlag)
+        {
+            System.out.println("Please enter a field to update: username, email, phone number. Type exit to exit");
+            input = userIn.nextLine();
+            switch(input)
+            {
+                case "username":
+                    System.out.println("Enter a username: ");
+                    newUsername = userIn.nextLine();
+                    ProfileController.updateUsername(profile, newUsername);
+                    break;
+                case "email":
+                    System.out.println("Enter an email address: ");
+                    newEmail = userIn.nextLine();
+                    ProfileController.updateEmail(profile, newEmail);
+                    break;
+                case "phone number":
+                    System.out.println("Enter a phone number: ");
+                    newPhone = userIn.nextLine();
+                    ProfileController.updatePhone(profile, newPhone);
+                    break;
+                case "exit":
+                    updateLoopFlag = false;
+                    break;
+                default:
+                    System.out.println("Invalid input.");
+            }
+        }
     }
 }
 

@@ -21,8 +21,23 @@ public class ProfileController {
        return matches;
     }
 
-    public static void takeQuiz(Profile profile, boolean[] quiz){
-        ProfileHandlerOBJ.takeQuiz(profile,quiz);
+    public static void retakeQuiz(Profile profile, boolean[] quiz){
+        ProfileHandlerOBJ.retakeQuiz(profile,quiz);
+    }
+
+    public static void updateUsername(Profile profile, String newUsername)
+    {
+        ProfileHandlerOBJ.updateUsername(profile, newUsername);
+    }
+
+    public static void updateEmail(Profile profile, String newEmail)
+    {
+        ProfileHandlerOBJ.updateEmail(profile, newEmail);
+    }
+
+    public static void updatePhone(Profile profile, String newPhone)
+    {
+        ProfileHandlerOBJ.updatePhone(profile, newPhone);
     }
 
 }
