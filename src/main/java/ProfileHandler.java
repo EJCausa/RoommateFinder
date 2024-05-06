@@ -42,6 +42,20 @@ public class ProfileHandler {
     }
 
     public static boolean signUp(String user, String email, String phone, String pass, boolean[] quizAns) {
+        try {
+            FileReader fr = new FileReader("accounts.csv");
+            CSVReader csvReader = new CSVReader(fr);
+            while(csvReader.peek() != null){
+                String[] line = csvReader.readNext();
+                if (line[0].equals(user)) {
+                    System.out.print("That username is taken!");
+                    return false;
+                }
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
         Profile newAcc = new Profile(user, email, phone, pass);
         newAcc.takeQuiz(quizAns);
         File accountFile = new File("accounts.csv");
