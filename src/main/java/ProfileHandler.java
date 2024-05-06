@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class ProfileHandler {
@@ -103,7 +104,39 @@ public class ProfileHandler {
         return matches;
     }
 
-    public static void takeQuiz(Profile profile, boolean[] quiz) {
+    public static void retakeQuiz(Profile profile, boolean[] quiz) {
+        profile.takeQuiz(quiz);
+        //change csv answers
+        File file = new File("accounts.csv");
+        try {
+            FileReader fr = new FileReader(file);
+            CSVReader reader = new CSVReader(fr);
 
+            List<String[]> csvContent = reader.readAll();
+
+            int lineIndex = -1;
+            for(int i = 0; i < csvContent.size(); i++)
+            {
+                if(csvContent.get(i)[0].equals(profile.getUsername()))
+                {
+                    lineIndex = i;
+                }
+            }
+
+            for(int i = 0; i < 10; i++)
+            {
+                csvContent.get(lineIndex)[i+4] = String.valueOf(quiz[i]);
+            }
+
+            reader.close();
+            FileWriter fw = new FileWriter(file);
+            CSVWriter writer = new CSVWriter(fw);
+
+            writer.writeAll(csvContent);
+            writer.flush();
+            writer.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

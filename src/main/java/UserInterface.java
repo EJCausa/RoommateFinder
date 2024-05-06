@@ -1,4 +1,3 @@
-import javax.swing.text.FlowView;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -156,13 +155,18 @@ public class UserInterface {
 
             while (!userExit) {
 
-                System.out.println("Options are: /retake quiz, /retrieve matches, /update profile");
+                System.out.println("Options are: /exit, /retake quiz, /retrieve matches, /update profile");
 
                 input = userIn.nextLine();
 
                 switch (input) {
+                    case "/exit":
+                        userExit = true;
+                        userIn.nextLine();
+                        break;
                     case "/retake quiz": //retake quiz
-
+                        loadRetake(currentProfile);
+                        break;
                     case "/retrieve matches": //retrieve matches
                         loadRetrieval();
                         break;
@@ -251,31 +255,39 @@ public class UserInterface {
             }
         }
 
-        int displayMatchAmount = -1;
-        int displayMatchCompat = -1;
-        System.out.println("Filter options: minimum compatibility, maximum amount of matches. Input finish to finish");
+        int displayMatchAmount = 20;
+        int displayMatchCompat = 0;
         while(filtersActiveLoop)
         {
+            System.out.println("Filter options: minimum compatibility, maximum amount of matches. Input finish to finish");
             input = userIn.nextLine();
             switch(input){
                 case "compatibility":
                     System.out.println("Please input the minimum compatibility score you want");
                     displayMatchCompat = userIn.nextInt();
+                    userIn.nextLine();
                     break;
                 case "amount":
                     System.out.println("Please input the maximum amount of matches to display");
                     displayMatchAmount = userIn.nextInt();
+                    userIn.nextLine();
                     break;
                 case "finish":
                     filtersActiveLoop = false;
                     break;
                 default:
-                    System.out.println("Filter options: minimum compatibility, maximum amount of matches. Input finish to finish");
+                    System.out.println("Invalid Input! Please input valid input!");
             }
         }
 
         loadMatches(displayMatchAmount, displayMatchCompat);
 
+    }
+
+    public void loadRetake(Profile profile)
+    {
+        boolean[] newAnswers = loadQuiz();
+        ProfileController.retakeQuiz(profile, newAnswers);
     }
 }
 
