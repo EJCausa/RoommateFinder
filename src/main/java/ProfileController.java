@@ -59,4 +59,24 @@ public class ProfileController {
     {
         return ProfileHandlerOBJ.getPhone(profile);
     }
+
+    public static void makeHousePost(Profile profile, String input)
+    {
+        ProfileHandlerOBJ.makeHousePost(profile, input);
+    }
+
+    public static String[] viewHousePosts(Profile profile)
+    {
+        return ProfileHandlerOBJ.viewHousePosts(profile);
+    }
+
+    public static void deleteHousePost(Profile profile, int index)
+    {
+        ProfileHandlerOBJ.deleteHousePost(profile, index);
+    }
+
+    public static void editHousePost(Profile profile, int index, String description)
+    {
+        ProfileHandlerOBJ.editHousePost(profile, index, description);
+    }
 }

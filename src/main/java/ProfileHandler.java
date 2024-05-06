@@ -31,6 +31,17 @@ public class ProfileHandler {
                         for (int i = 0; i < 10; i++) {
                             prof.quizAnswers[i] = Boolean.valueOf(line[i + 4]);
                         }
+                        File postFile = new File("postFile.csv");
+                        if(postFile.canRead()) {
+                            FileReader postFileReader = new FileReader(postFile);
+                            CSVReader postReader = new CSVReader(postFileReader);
+                            while (postReader.peek() != null) {
+                                String[] postLine = postReader.readNext();
+                                if (postLine[0].equals(user)) {
+                                    prof.makeHousePost(postLine[1]);
+                                }
+                            }
+                        }
                         prof.lineNum = (int) reader.getLinesRead();
                         return prof;
                     }
@@ -298,5 +309,96 @@ public class ProfileHandler {
     public static String getPhone(Profile profile)
     {
         return profile.getPhoneNumber();
+    }
+
+    public static void makeHousePost(Profile profile, String input)
+    {
+        String[] newLine = {profile.getUsername(), input};
+        try {
+            File file = new File("postFile.csv");
+            FileWriter outFile = new FileWriter(file, true);
+            CSVWriter writer = new CSVWriter(outFile);
+            writer.writeNext(newLine);
+            writer.close();
+            profile.makeHousePost(input);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static String[] viewHousePosts(Profile profile)
+    {
+        ArrayList<HousePost> userPosts = profile.getHousePosts();
+        int sizeOfList = userPosts.size();
+        String[] returnString = new String[sizeOfList];
+        for(int i = 0; i < sizeOfList; i++)
+        {
+            returnString[i] = userPosts.get(i).display();
+        }
+        return returnString;
+    }
+
+    public static void deleteHousePost(Profile profile, int index)
+    {
+        int removalIndex = index;
+        try {
+            File file = new File("postFile.csv");
+            FileReader fr = new FileReader(file);
+            CSVReader reader = new CSVReader(fr);
+            List<String[]> CSVContent = reader.readAll();
+            for(int i = 0; i < CSVContent.size(); i++)
+            {
+                if(CSVContent.get(i)[0].equals(profile.getUsername()) && index > 0)
+                {
+                    index--;
+                }
+                else if(CSVContent.get(i)[0].equals(profile.getUsername()) && index == 0)
+                {
+                    CSVContent.remove(i);
+                }
+            }
+            reader.close();
+            FileWriter fw = new FileWriter(file);
+            CSVWriter writer = new CSVWriter(fw);
+
+            writer.writeAll(CSVContent);
+            writer.flush();
+            writer.close();
+            profile.removeHousePost(removalIndex);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void editHousePost(Profile profile, int index, String description)
+    {
+        int editIndex = index;
+        try {
+            File file = new File("postFile.csv");
+            FileReader fr = new FileReader(file);
+            CSVReader reader = new CSVReader(fr);
+            List<String[]> CSVContent = reader.readAll();
+            for(int i = 0; i < CSVContent.size(); i++)
+            {
+                if(CSVContent.get(i)[0].equals(profile.getUsername()) && index > 0)
+                {
+                    index--;
+                }
+                else if(CSVContent.get(i)[0].equals(profile.getUsername()) && index == 0)
+                {
+                    CSVContent.get(i)[1] = description;
+                }
+            }
+            reader.close();
+            FileWriter fw = new FileWriter(file);
+            CSVWriter writer = new CSVWriter(fw);
+
+            writer.writeAll(CSVContent);
+            writer.flush();
+            writer.close();
+            profile.editHousePost(editIndex, description);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

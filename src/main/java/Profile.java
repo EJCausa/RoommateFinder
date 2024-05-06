@@ -63,8 +63,19 @@ public class Profile {
         this.blockedUsers.remove(user);
     }
 
-    public void makeHousePost() {
-//        HousePost.makeHousePost();
+    public void makeHousePost(String housePost) {
+        HousePost newPost = new HousePost(getEmail(), this, housePost);
+        housePosts.add(newPost);
+    }
+
+    public void removeHousePost(int index) {
+        housePosts.remove(index);
+    }
+
+    public void editHousePost(int index, String description)
+    {
+        HousePost newPost = new HousePost(getEmail(), this, description);
+        housePosts.set(index, newPost);
     }
 
 

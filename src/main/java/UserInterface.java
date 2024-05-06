@@ -202,6 +202,15 @@ public class UserInterface {
                     case "/view profile":
                         viewProfile(currentProfile);
                         break;
+                    case "/makehousepost":
+                        makeHousePost(currentProfile);
+                        break;
+                    case "/deletehousepost":
+                        deleteHousePost(currentProfile);
+                        break;
+                    case "/edithousepost":
+                        editHousePost(currentProfile);
+                        break;
                     default:
                         System.out.println("Invalid Command! Please use of the given options!");
 
@@ -389,6 +398,57 @@ public class UserInterface {
         System.out.println(email);
         System.out.println(phone);
     }
+
+    public void makeHousePost(Profile profile)
+    {
+        Scanner userIn = new Scanner(System.in);
+        String input;
+        System.out.println("Please write your post: ");
+        input = userIn.nextLine();
+        ProfileController.makeHousePost(profile, input);
+    }
+
+    public void deleteHousePost(Profile profile)
+    {
+        String[] toPrint = ProfileController.viewHousePosts(profile);
+        for(int i = 0; i < toPrint.length; i++)
+        {
+            System.out.println(String.valueOf(i) + ": " + toPrint[i]);
+        }
+
+        Scanner userIn = new Scanner(System.in);
+        int indexDeletion;
+        System.out.println("Please enter the number of the house post you want to delete. -1 to cancel operation");
+        indexDeletion = userIn.nextInt();
+        userIn.nextLine();
+        if(indexDeletion > -1)
+        {
+            ProfileController.deleteHousePost(profile, indexDeletion);
+        }
+    }
+
+    public void editHousePost(Profile profile)
+    {
+        String[] toPrint = ProfileController.viewHousePosts(profile);
+        for(int i = 0; i < toPrint.length; i++)
+        {
+            System.out.println(String.valueOf(i) + ": " + toPrint[i]);
+        }
+
+        Scanner userIn = new Scanner(System.in);
+        int indexEdit;
+        System.out.println("Please enter the number of the house post you want to delete. -1 to cancel operation");
+        indexEdit = userIn.nextInt();
+        userIn.nextLine();
+        if(indexEdit > -1)
+        {
+            String editString;
+            System.out.println("Please write your updated house post");
+            editString = userIn.nextLine();
+            ProfileController.editHousePost(profile, indexEdit, editString);
+        }
+    }
+
 }
 
 
