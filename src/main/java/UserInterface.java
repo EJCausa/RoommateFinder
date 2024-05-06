@@ -61,9 +61,9 @@ public class UserInterface {
                         |  /retake quiz  |                        |  /exit  |
                         '----------------'                        '---------'
 
-                        .----------.  .------------------.  .---------------.
-                        |  /inbox  |  |  /favorite user  |  |  /block user  |
-                        '----------'  '------------------'  '---------------'
+                .--------------------.  .--------------------.  .----------------------.
+                |  /edit house post  |  |  /make hosue post  |  |  /delete house post  |
+                '--------------------'  '--------------------'  '----------------------'
 
                           Welcome to the homepage! Type one of the commands!
 
